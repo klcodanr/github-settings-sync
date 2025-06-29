@@ -1,6 +1,6 @@
 {
   "name": "github-settings-sync",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Synchronize GitHub repository settings across multiple repositories",
   "type": "module",
   "main": "src/index.js",

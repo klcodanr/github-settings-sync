@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/klcodanr/github-settings-sync/compare/v1.0.0...v1.0.1) (2025-06-29)
+
+
+### Bug Fixes
+
+* update package and version support ([#11](https://github.com/klcodanr/github-settings-sync/issues/11)) ([e850b1d](https://github.com/klcodanr/github-settings-sync/commit/e850b1d8018f9295b56139adb442cfda36bbf756))
+
 # 1.0.0 (2025-06-01)
 
 
