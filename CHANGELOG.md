@@ -1,3 +1,7 @@
+## Unreleased
+
+* Add ability to filter repositories by fork status ([#39](https://github.com/klcodanr/github-settings-sync/pull/39))
+
 ## [1.0.1](https://github.com/klcodanr/github-settings-sync/compare/v1.0.0...v1.0.1) (2025-06-29)
 
 

@@ -44,6 +44,8 @@ program
   )
   .option('-l, --label <label>', 'Only process repositories that have this label')
   .option('--language <language>', 'Only process repositories with this primary language')
+  .option('--fork', 'Only process repositories that are forks')
+  .option('--no-fork', 'Only process repositories that aren\'t forks')
   .option('-t, --token <token>', 'GitHub Personal Access Token (overrides GITHUB_TOKEN env var)')
   .option('-u, --base-url <url>', 'GitHub API base URL (for GitHub Enterprise)')
   .option('-d, --dry-run', 'Show what would be changed without making changes')
@@ -83,6 +85,7 @@ program
         namePattern: options.namePattern,
         label: options.label,
         language: options.language,
+        fork: options.fork
       };
 
       await syncSettings(octokit, org, settings, filters, options.dryRun);
