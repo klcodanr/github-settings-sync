@@ -89,6 +89,12 @@ github-settings-sync --org my-org --settings settings.json --label active
 # Only process Python repositories
 github-settings-sync --org my-org --settings settings.json --language python
 
+# Only process forks
+github-settings-sync --org my-org --settings settings.json --fork
+
+# Do NOT process forks
+github-settings-sync --org my-org --settings settings.json --no-fork
+
 # Combine multiple filters (repositories must match ALL specified filters)
 github-settings-sync --org my-org --settings settings.json --name-pattern "api" --language python
 ```

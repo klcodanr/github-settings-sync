@@ -35,6 +35,15 @@ describe('Filters Utility', () => {
     owner: {
       login: org,
     },
+    fork: false,
+  };
+  const fork = {
+    name: 'test-repo',
+    language: 'JavaScript',
+    owner: {
+      login: org,
+    },
+    fork: true,
   };
 
   beforeEach(() => {
@@ -184,6 +193,40 @@ describe('Filters Utility', () => {
       expect(consoleSpy).toHaveBeenCalledWith(
         `⚠️ Could not fetch labels for ${repo.name}: ${error.message}`
       );
+    });
+
+    it('should filter out forks', async () => {
+      const filters = {
+        fork: false
+      };
+
+      const forkResult = await shouldProcessRepository(mockOctokit, fork, filters);
+      expect(forkResult).toBe(false);
+
+      const repoResult = await shouldProcessRepository(mockOctokit, repo, filters);
+      expect(repoResult).toBe(true);
+    });
+
+    it('should filter out non-forks', async () => {
+      const filters = {
+        fork: true
+      };
+
+      const forkResult = await shouldProcessRepository(mockOctokit, fork, filters);
+      expect(forkResult).toBe(true);
+
+      const repoResult = await shouldProcessRepository(mockOctokit, repo, filters);
+      expect(repoResult).toBe(false);
+    });
+
+    it('should include forks and non-forks by default', async () => {
+      const filters = {};
+
+      const forkResult = await shouldProcessRepository(mockOctokit, fork, filters);
+      expect(forkResult).toBe(true);
+
+      const repoResult = await shouldProcessRepository(mockOctokit, repo, filters);
+      expect(repoResult).toBe(true);
     });
 
     it('should apply multiple filters', async () => {

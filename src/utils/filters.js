@@ -58,7 +58,7 @@ export async function getRepositoryLabels(octokit, org, repo) {
  */
 export async function shouldProcessRepository(octokit, repo, filters) {
   // If no filters are specified, process all repositories
-  if (!filters.namePattern && !filters.label && !filters.language) {
+  if (!filters.namePattern && !filters.label && !filters.language && (filters.fork === undefined)) {
     return true;
   }
 
@@ -90,6 +90,16 @@ export async function shouldProcessRepository(octokit, repo, filters) {
       console.log(`⏭️ Skipping ${repo.name} - does not have label ${filters.label}`);
       return false;
     }
+  }
+
+  // Check fork state
+  if (filters.fork == true && !repo.fork) {
+    console.log(`⏭️ Skipping ${repo.name} - repository is not a fork`);
+    return false;
+  }
+  if (filters.fork == false && repo.fork) {
+    console.log(`⏭️ Skipping ${repo.name} - repository is a fork`);
+    return false;
   }
 
   return true;
